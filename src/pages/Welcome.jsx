@@ -1,40 +1,40 @@
 import React from "react";
-
+import Header from "../components/Header";
+import { AppLabel } from "../components/AppLable";
+import {AppButton} from "../components/AppButton";
 const Welcome = () => {
   return (
     <div className="container">
       <div className="wrapper">
         <div className="welcome">
-          <h1>Добро пожаловать в квиз от лучшего учебного центра</h1>
+          <Header
+            headerText="Добро пожаловать  в квиз от лучшего учебного центра"
+            textType="h6"
+          />
+
           <form className="welcome__form">
-            <label className="input-wrapper" htmlFor="username">
-              Ваше имя
-              <input
-                required
-                type="text"
-                name="username"
-                id="username"
-                placeholder="Ваш ответ"
-              />
-              <span id="error-message">
-                Введите номер в правильном формате например
-              </span>
-            </label>
-            <label className="input-wrapper" htmlFor="username">
-              Ваш номер
-              <input
-                required
-                type="tel"
-                name="phone"
-                id="phone"
-                placeholder="+998 9- --- -- -- "
-                pattern="^(?:\+998)?(?:\d{2})?(?:\d{7})$"
-              />
-              <span id="error-message">Введите номер в правильном формате</span>
-            </label>
-            <button disabled type="submit" id="next-btn">
-              Далее
-            </button>
+            <AppLabel
+              labelText="Ваше имя"
+              labelPlaceHolder="Введите ваше имя"
+              labelType="text"
+              labelName="username"
+              labelError="Введите имя в правильном формате например"
+            />
+            <AppLabel
+              labelText="Ваш номер"
+              labelPlaceHolder="+998 9- --- -- -- "
+              labelType="tel"
+              labelName="phone"
+              labelError="Введите номер в правильном формате"
+            />
+
+            <AppButton
+              buttonText="Далее"
+              buttonType="button"
+              isDisabled={false} 
+            />
+
+            
           </form>
         </div>
       </div>
