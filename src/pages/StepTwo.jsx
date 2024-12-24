@@ -1,6 +1,17 @@
 import React from "react";
-
+import { QuestionVariants } from "../components/QuestionVariants";
+import {useState} from "react";
 const StepTwo = () => {
+  const [selectedVariant, setSelectedVariant] = useState(null);
+
+  const handleVariantChange = (value) => {
+    setSelectedVariant(value);
+  };
+
+  const handleNextClick = () => {
+    console.log("Выбранный вариант:", selectedVariant);
+  };
+
   return (
     <div className="container">
       <div className="wrapper">
@@ -19,30 +30,21 @@ const StepTwo = () => {
               <div className="indicator__unit indicator__unit-4"></div>
             </div>
           </div>
-          <div className="question">
-            <h2>1. Занимательный вопрос</h2>
-            <ul className="variants">
-              <li className="variant-wrapper">
-                <input required type="radio" name="variant-1" id="variant-1" />
-                <label htmlFor="variant-1">Ваш ответ</label>
-              </li>
-              <li className="variant-wrapper">
-                <input required type="radio" name="variant-2" id="variant-2" />
-                <label htmlFor="variant-2">Ваш ответ</label>
-              </li>
-              <li className="variant-wrapper">
-                <input required type="radio" name="variant-3" id="variant-3" />
-                <label htmlFor="variant-3">Ваш ответ</label>
-              </li>
-              <li className="variant-wrapper">
-                <input required type="radio" name="variant-4" id="variant-4" />
-                <label htmlFor="variant-4">Ваш ответ</label>
-              </li>
-            </ul>
-            <button type="button" disabled id="next-btn">
-              Далее
-            </button>
-          </div>
+
+          <QuestionVariants
+            questionNumber={1}
+            questionText="Занимательный вопрос"
+            variants={[
+              { value: "1", label: "Вариант 1" },
+              { value: "2", label: "Вариант 2" },
+              { value: "3", label: "Вариант 3" },
+              { value: "4", label: "Вариант 4" },
+            ]}
+            selectedVariant={selectedVariant}
+            onVariantChange={handleVariantChange}
+            buttonDisabled={!selectedVariant}
+            onNextClick={handleNextClick}
+          />
         </div>
       </div>
     </div>
