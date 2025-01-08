@@ -1,10 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState , useContext } from "react";
 import Header from "../components/Header";
 import { AppLabel } from "../components/AppLable";
 import {AppButton} from "../components/AppButton";
+import {Link, useNavigate } from "react-router-dom";
+
+import { ThemeContext, themes } from "../contexts/themeContext";
 
 
 const Welcome = () => {
+const { theme,toggleTheme } = useContext(ThemeContext)
+console.log ("theme", theme)
+
   //Регулярные выражения
   const RegexPhone = /^\+?\d{1,3}[-.\s]?\(?\d{1,4}\)?[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/
   const RegexName = /^[a-zA-Zа-яА-ЯёЁ\s]+$/
@@ -17,6 +23,12 @@ const [nameError,setNameError] = useState(false);
 const[phoneError,setPhoneError]= useState(false);
 const [buttonError,setButtonError]= useState(true);
 console.log("as");
+// Переключение страницы
+
+const navigate = useNavigate()
+
+
+
 const handleClick = () =>{
   
 if (!RegexName.test(name)){
@@ -29,6 +41,9 @@ if (!RegexName.test(name)){
 }else {
   setNameError(false);
   setPhoneError(false);
+  navigate ("/step-one")
+  localStorage.setItem("userInfo",JSON.stringify({name,phone}))
+  
 }
 
 
@@ -46,9 +61,15 @@ if(!name || !phone){
 }
 },[name, phone]);
   return (
-    <div className="container">
+    <div className={`container ${theme===themes.dark && "_dark"}` }  >
       <div className="wrapper">
         <div className="welcome">
+          <AppButton buttonType = "button"
+          buttonClick={toggleTheme}
+          buttonText={theme===themes.dark ? "Темная тема" : "Светлая тема" }
+
+          
+          />
           <Header
             headerText="Добро пожаловать  в квиз от лучшего учебного центра"
             textType="h6"
@@ -75,7 +96,7 @@ if(!name || !phone){
               inputChange={setPhone}
               hasError={phoneError}
             />
-
+  
             <AppButton
             buttonClick={handleClick}
               buttonText="Далее"

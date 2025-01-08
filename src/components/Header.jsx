@@ -1,6 +1,6 @@
 import React from "react";
 
-const Header = ({ headerText, textType }) => {
+ export const Header = ({ headerText, textType }) => {
     function headerType() {
         switch (textType) {
 

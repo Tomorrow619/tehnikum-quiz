@@ -1,50 +1,65 @@
-import React from "react";
-import { QuestionVariants } from "../components/QuestionVariants";
-import {useState} from "react";
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
+import { ProgressBar } from "../components/ProgressBar";
+import { Header } from "../components/Header";
+import { AnswerItem } from "../components/AnswerItem";
+import { useState } from "react";
+
 const StepTwo = () => {
-  const [selectedVariant, setSelectedVariant] = useState(null);
-
-  const handleVariantChange = (value) => {
-    setSelectedVariant(value);
-  };
-
-  const handleNextClick = () => {
-    console.log("Выбранный вариант:", selectedVariant);
-  };
-
+  const variants = [
+    {
+      id: "variant-1",
+      labelText: "Frontend",
+    },
+    {
+      id: "variant-2",
+      labelText: "Python",
+    },
+    {
+      id: "variant-3",
+      labelText: "UX/UI",
+    },
+    {
+      id: "variant-4",
+      labelText: "FullStack",
+    },
+  ];
+  const [checkedAnswer, setCheckedAnswer] = useState("");
+  useEffect(() => {
+    const userInfo = {
+      ...JSON.parse(localStorage.getItem("user-info")),
+      checkedAnswer,
+    };
+    localStorage.setItem("user-info", JSON.stringify(userInfo));
+  }, [checkedAnswer]);
   return (
     <div className="container">
       <div className="wrapper">
         <div className="variants-quiz">
-          <div className="indicator">
-            <div className="indicator__text">
-              <span className="indicator__description">
-                Скидка за прохождение опроса:
-              </span>
-              <span className="indicator__value">15%</span>
-            </div>
-            <div className="indicator__progressbar">
-              <div className="indicator__unit indicator__unit-1 _active"></div>
-              <div className="indicator__unit indicator__unit-2"></div>
-              <div className="indicator__unit indicator__unit-3"></div>
-              <div className="indicator__unit indicator__unit-4"></div>
-            </div>
-          </div>
+          <ProgressBar currentStep={1} />
+          <div className="question"></div>
 
-          <QuestionVariants
-            questionNumber={1}
-            questionText="Занимательный вопрос"
-            variants={[
-              { value: "1", label: "Вариант 1" },
-              { value: "2", label: "Вариант 2" },
-              { value: "3", label: "Вариант 3" },
-              { value: "4", label: "Вариант 4" },
-            ]}
-            selectedVariant={selectedVariant}
-            onVariantChange={handleVariantChange}
-            buttonDisabled={!selectedVariant}
-            onNextClick={handleNextClick}
-          />
+          <Header headerText="Выберите курс." textType="h2" />
+          
+          <ul className="variants">
+            {variants.map((elem) => {
+              return (
+                <AnswerItem
+                  key={elem.id}
+                  answerText={elem.labelText}
+                  answerVariants={elem.id}
+                  onChange={() => {
+                    setCheckedAnswer(elem.labelText);
+                  }}
+                  checked={checkedAnswer === elem.labelText}
+                />
+              );
+            })}
+          </ul>
+
+          <button type="button" disabled id="next-btn">
+            Далее
+          </button>
         </div>
       </div>
     </div>

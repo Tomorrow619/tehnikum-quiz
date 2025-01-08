@@ -1,5 +1,7 @@
 import React from "react";
-export const QuestionVariants = ({
+
+
+export const EmojiQuestion = ({
     questionNumber,
     questionText,
     variants,
@@ -11,7 +13,7 @@ export const QuestionVariants = ({
     return (
       <div className="question">
         <h2>{`${questionNumber}. ${questionText}`}</h2>
-        <ul className="variants">
+        <ul className="emoji-variants">
           {variants.map((variant, index) => (
             <li className="variant-wrapper" key={index}>
               <input
@@ -23,7 +25,10 @@ export const QuestionVariants = ({
                 checked={selectedVariant === variant.value}
                 onChange={() => onVariantChange(variant.value)}
               />
-              <label htmlFor={`variant-${index + 1}`}>{variant.label}</label>
+              <label htmlFor={`variant-${index + 1}`}>
+                <img src={variant.imgSrc} alt={variant.imgAlt} />
+                <p>{variant.label}</p>
+              </label>
             </li>
           ))}
         </ul>
@@ -37,4 +42,4 @@ export const QuestionVariants = ({
         </button>
       </div>
     );
-  }
+  };

@@ -1,13 +1,14 @@
 import React from "react";
 import {ProgressBar} from "../components/ProgressBar"
 import { Questions } from "../components/Questions";
+
 const StepOne = () => {
   return (
     <div className="container">
       <div className="wrapper">
         <div className="single-input-quiz">
          <ProgressBar
-         
+         currentStep={0}
          />
          <Questions
         questionNumber={1}
@@ -19,6 +20,7 @@ const StepOne = () => {
         buttonDisabled={false}
         
       />
+      
         </div>
       </div>
     </div>
