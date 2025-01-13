@@ -4,8 +4,10 @@ import { ProgressBar } from "../components/ProgressBar";
 import { Header } from "../components/Header";
 import { AnswerItem } from "../components/AnswerItem";
 import { useState } from "react";
+import { AppButton } from "../components/AppButton";
 
 const StepTwo = () => {
+  
   const variants = [
     {
       id: "variant-1",
@@ -57,9 +59,15 @@ const StepTwo = () => {
             })}
           </ul>
 
-          <button type="button" disabled id="next-btn">
-            Далее
-          </button>
+         <Link to="/step-three">
+          <AppButton
+          buttonText="Далее"
+          buttonType="button"
+          
+          
+          
+          
+          /></Link>
         </div>
       </div>
     </div>

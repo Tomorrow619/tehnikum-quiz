@@ -8,6 +8,7 @@ export const Questions = ({
   inputPlaceholder,
   errorMessage,
   buttonDisabled,
+  onNextPage
  
 }) => {
   return (
@@ -26,7 +27,7 @@ export const Questions = ({
         type="button"
         disabled={buttonDisabled}
         id="next-btn"
-        
+        onClick={onNextPage}
       >
         Далее
       </button>

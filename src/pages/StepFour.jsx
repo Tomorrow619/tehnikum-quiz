@@ -45,7 +45,8 @@ const StepFour = () => {
                 /> )}
              
             </ul>
-            <AppButton buttonClick={() => navigate("/thanks")} isDisabled={!checkVariants} />
+            <AppButton buttonClick={() => navigate("/thanks")} isDisabled={!checkVariants}
+            buttonText="Далее" />
           </div>
         </div>
       </div>

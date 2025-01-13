@@ -2,6 +2,7 @@ import React from "react";
 import { ProgressBar } from "../components/ProgressBar";
 import {EmojiQuestion} from "../components/EmojiQuestion";
 import  { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 const StepThree = () => {
@@ -10,9 +11,9 @@ const StepThree = () => {
   const handleVariantChange = (value) => {
     setSelectedVariant(value);
   };
-
+const navigate = useNavigate();
   const handleNextClick = () => {
-    
+    navigate ("/step-four");
   };
 
   return (
