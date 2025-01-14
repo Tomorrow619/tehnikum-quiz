@@ -8,7 +8,7 @@ export const AppLabel = ({
   labelError,
   inputValue,
   inputChange,
-  hasError
+  hasError,
 }) => {
   return (
     <label className={`input-wrapper ${hasError && "_error"}`} htmlFor={labelName}>

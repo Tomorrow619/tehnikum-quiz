@@ -27,13 +27,17 @@ const StepTwo = () => {
     },
   ];
   const [checkedAnswer, setCheckedAnswer] = useState("");
+  const [buttonError, setButtonError] = useState(true)
   useEffect(() => {
-    const userInfo = {
-      ...JSON.parse(localStorage.getItem("user-info")),
-      checkedAnswer,
-    };
-    localStorage.setItem("user-info", JSON.stringify(userInfo));
-  }, [checkedAnswer]);
+    const userInfo = {...JSON.parse(localStorage.getItem("userInfo")),checkedAnswer}
+    localStorage.setItem("userInfo",JSON.stringify(userInfo))
+    if(!checkedAnswer){
+      setButtonError(true)
+    }else{
+      setButtonError(false)
+    }
+  }, [checkedAnswer])
+
   return (
     <div className="container">
       <div className="wrapper">
@@ -41,7 +45,7 @@ const StepTwo = () => {
           <ProgressBar currentStep={1} />
           <div className="question"></div>
 
-          <Header headerText="Выберите курс." textType="h2" />
+          <Header headerText={"Выберите курс."} textType={"h2"} />
           
           <ul className="variants">
             {variants.map((elem) => {
@@ -63,7 +67,7 @@ const StepTwo = () => {
           <AppButton
           buttonText="Далее"
           buttonType="button"
-          
+          isDisabled={buttonError}
           
           
           

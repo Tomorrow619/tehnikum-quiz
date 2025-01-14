@@ -1,6 +1,6 @@
 import React, { useEffect, useState , useContext } from "react";
 import Header from "../components/Header";
-import { AppLabel } from "../components/AppLable";
+import { AppLabel } from "../components/AppLabel";
 import {AppButton} from "../components/AppButton";
 import {Link, useNavigate } from "react-router-dom";
 

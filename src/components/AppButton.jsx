@@ -1,17 +1,18 @@
 import React from "react";
-import { Link } from "react-router-dom";
+
 export const AppButton = ({
   buttonType,
   buttonText,
   isDisabled,
-  buttonClick
+  buttonClick,
+  buttonId="next-btn",
 }) => {
   return (
     <button
       disabled={isDisabled}
       type={buttonType}
       onClick={buttonClick}
-      id="next-btn"
+      id={buttonId}
     >
       {buttonText}
     </button>
